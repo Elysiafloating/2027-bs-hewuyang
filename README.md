@@ -129,11 +129,3 @@ python src/detect.py --weights runs/baseline/weights/best.pt --source data/sampl
 复现细节与随机种子见 `experiments/*/config.yaml` 与 `command.txt`。
 
 ---
-
-## 提交规范（哪些进 Git / 哪些不进）
-
-**✅ 可提交**：源代码、配置、小型样例数据、文献清单、实验日志(md/csv)、CSV 结果、图表、论文 Markdown/LaTeX、小型 PDF 报告（`reports/` 例外放行）。
-
-**❌ 不提交**（已被 `.gitignore` 忽略）：几 GB 数据集（`data/raw/`）、完整模型权重（`*.pt`）、大量训练 checkpoint（`results/checkpoints/`）、`.venv`/Conda 环境目录、`build`、Vivado 巨大临时目录、node_modules、含个人隐私的数据、有版权限制的教材/论文 PDF。
-
-> 完整权重经 **GitHub Release** 附件分发，不入库。
