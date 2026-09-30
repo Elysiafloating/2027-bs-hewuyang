@@ -1,0 +1,1 @@
+python src/train.py --name baseline --model yolov8n.pt --data configs/data.yaml --epochs 100 --imgsz 640 --batch 16 --optimizer auto --seed 42 --device 0

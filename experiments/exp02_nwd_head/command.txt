@@ -1,0 +1,1 @@
+python src/train.py --name exp02_nwd_head --model yolov8n.pt --data configs/data.yaml --epochs 100 --imgsz 640 --batch 16 --seed 42 --loss nwd --head improved --device 0

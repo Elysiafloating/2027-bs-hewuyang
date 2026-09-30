@@ -1,0 +1,18 @@
+# 样例数据目录
+
+放置**少量**样例图像 + 对应 YOLO 标签，用于：
+
+- 快速验证 `src/train.py` / `src/detect.py` 流程是否跑通；
+- 他人 clone 后无需下载全量数据即可看到数据格式。
+
+建议结构：
+
+```
+samples/
+├── images/
+│   └── sample01.jpg
+└── labels/
+    └── sample01.txt
+```
+
+> 全量数据（UAEMMN）请见 `data/README.md`，不入库。

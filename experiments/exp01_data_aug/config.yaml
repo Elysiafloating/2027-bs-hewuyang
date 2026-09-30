@@ -1,0 +1,24 @@
+# exp01 数据侧改进配置
+# 目标：缓解 star 类 Recall=0（候选根因：极小标注 / 类别不平衡）
+
+experiment_id: EXP-001
+name: exp01_data_aug
+
+inherits: baseline         # 在 baseline 超参基础上叠加以下改动
+
+data_side:
+  star_oversample: true    # star 类过采样（复制/增强）以缓解不平衡
+  slice_aug: true          # 小目标切片增强（SliceAided / 9-grid）
+  mosaic: 0.5              # 降低 mosaic 比例，避免极小目标被稀释
+  copy_paste: false        # 可选：将 star 粘贴到背景图
+
+training:
+  epochs: 100
+  imgsz: 640
+  batch: 16
+  seed: 42
+  device: 0
+
+expected_effect: >
+  提升 star 类 Recall；若仍≈0，则排除“样本不足/不平衡”假设，
+  转向“标注尺度 / anchor 匹配”根因（见 exp02）。

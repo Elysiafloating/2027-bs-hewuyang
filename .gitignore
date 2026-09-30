@@ -1,0 +1,95 @@
+# ============================================================
+# 2027-bs-meteor .gitignore
+# 原则（见提交规范）：
+#   可入库：源代码、配置、小型样例数据、文献清单、实验日志(md/csv)、
+#           CSV 结果、图表、论文 Markdown/LaTeX、小型 PDF 报告
+#   不入库：大体积数据集、完整模型权重、大量 checkpoint、.venv /
+#           Conda 环境、build、Vivado 大临时目录、node_modules、
+#           含隐私数据、有版权限制的教材/论文 PDF
+# ============================================================
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+# Conda 环境目录（若误置于项目内才需要；通常 env 在仓库外）
+# 如有，请手动加：miniforge*/  miniconda*/  anaconda*/
+
+# ---------- YOLO / 训练产物（大体积，不入库）----------
+runs/                 # 训练过程输出（图片/标签/权重缓存）
+**/weights/
+*.pt
+*.pth
+*.onnx
+*.engine
+*.torchscript
+*.ckpt
+
+# ---------- 数据：仅大体积不入库，小型样例保留 ----------
+data/raw/             # UAEMMN 全量数据集（约 437MB），下载脚本复现
+data/*.jpg
+data/*.jpeg
+data/*.png
+data/*.bmp
+data/*.mp4
+data/*.avi
+data/*.db
+data/*.sqlite
+data/*.pkl
+data/*.h5
+data/*.zip
+data/*.tar*
+data/*.tar.gz
+# 例外：data/samples 下的小型样例数据（几张图 + label）允许入库
+!data/samples/**
+
+# ---------- 结果：仅小文件入库 ----------
+# 完整权重 / 大量 checkpoint 不入库（用 GitHub Release 分发）
+results/checkpoints/*
+!results/checkpoints/.gitkeep
+# 框架训练日志（*.log 大体积）不入库；md/csv 实验日志可入库
+*.log
+# 图表(png/svg) 与 CSV 结果表 默认入库（results/figures, results/tables）
+
+# ---------- 构建 / 依赖 ----------
+build/
+dist/
+node_modules/
+
+# ---------- Vivado 生成的大临时目录 ----------
+*.runs/
+*.cache/
+*.hw/
+*.sim/
+*.gen/
+*.srcs/
+*.ip_user_files/
+*.jou
+*.str
+.Xilinx/
+*.xpr
+
+# ---------- 隐私 / 密钥 / 含个人信息的数据 ----------
+.env
+*.env
+secrets/
+private/
+data/private/
+*.pem
+*.key
+id_rsa*
+
+# ---------- PDF：默认忽略，避免误提交版权受限教材/论文 ----------
+*.pdf
+# 例外：项目自身生成的小型报告 PDF（放在 reports/ 下，按需提交）
+!reports/**/*.pdf
+
+# ---------- 系统 / 编辑器 ----------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,3 @@
+# 模型检查点存放目录
+# ⚠️ 权重文件（*.pt）已被 .gitignore 忽略，不入库。
+# 最终权重通过 GitHub Release 附件分发，此处仅作本地/Release 备份占位。

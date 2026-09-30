@@ -1,0 +1,22 @@
+# YOLOv8 数据集配置 (UAEMMN)
+
+# 说明：
+#   UAEMMN 体积约 437 MB、14800 张图像，不入库（见 .gitignore 的 data/raw/）。
+#   先用 scripts/download_uaemmn.py 下载解压到 data/raw/，再按如下组织。
+#
+# 类别（以数据集自带 classes.txt 为准！当前按方案已知的 meteor/star 占位）：
+#   0: meteor   流星（线状短时弱小目标）
+#   1: star     恒星（静止背景，当前 Baseline Recall=0，需诊断）
+#   ⚠️ 下载后请核对实际类别数，再改下面的 nc / names。
+
+path: data/raw
+
+train: images/train
+val: images/val
+test: images/test
+
+nc: 2
+
+names:
+  0: meteor
+  1: star

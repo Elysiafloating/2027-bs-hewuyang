@@ -1,0 +1,24 @@
+# exp02 模型侧改进配置
+# 目标：针对“极小标注尺度 / anchor 不匹配”根因，引入 NWD 度量 + 改进检测头
+
+experiment_id: EXP-002
+name: exp02_nwd_head
+
+inherits: baseline         # 在 baseline 超参基础上叠加以下改动
+
+model_side:
+  nwd_loss: true           # Normalized Wasserstein Distance 替代/加权 IoU
+  nwd_beta: 2.0            # 高斯分布尺度参数 β
+  detect_head: improved    # 改进检测头（小目标分支 / 轻量注意力如 CBAM）
+  anchor_free: false       # 仍基于 YOLOv8 anchor-free，但调整 reg_max 适配小目标
+
+training:
+  epochs: 100
+  imgsz: 640
+  batch: 16
+  seed: 42
+  device: 0
+
+warning: >
+  NWD 论文有两版，第一作者署名不一致（arxiv 预印本 vs ISPRS 正式版 XU C 2022），
+  引用前必须核实正式出处，避免文献错误。
