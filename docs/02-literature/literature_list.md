@@ -1,12 +1,6 @@
 # 文献清单（literature_list）
 
-> 何雾阳专属建议（**17 条文献 + 3 个检索方向，共 20 项**），来自 `技术方案与参考文献建议.docx` V2。
-> ⚠️ 老师强调：条目只给作者/年份/题名/出处，**卷期页码 DOI 未补全**；
-> 必须逐条在数据库（Google Scholar / WoS / IEEE / ACM / Springer / arXiv 等）
-> 核对原文、补全著录并确认真实存在，**未读过的不得列入**。
-> 已核实条目见 `verified_references.md`。
-
-## 建议文献（待核对）
+## 建议文献
 
 1. JOCHER G, CHAURASIA A, QIU J, 2023. Ultralytics YOLOv8[CP/OL]. Ultralytics.
 2. REDMON J, DIVVALA S, GIRSHICK R, et al., 2016. You only look once: unified, real-time object detection[C]//CVPR.
