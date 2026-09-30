@@ -2,25 +2,29 @@
 EXP-002
 
 ## Purpose
-验证**模型侧改进**（NWD 度量 + 改进检测头 / 轻量注意力）能否解决“极小标注尺度 / anchor 不匹配”导致的 star 类漏检，
-并作为虚警抑制的模型侧基础。
+验证**模型侧改进**（NWD 度量 + 改进检测头 / 轻量注意力）能否：
+1. 解决 star 类极小标注尺度 / 分配策略不匹配导致的漏检（Baseline Recall=0.0558）；
+2. 同时不引入额外虚警（seagull / airplane / satellite / star）。
 
 ## Compared with
 Baseline（EXP-000）、exp01 数据增强（EXP-001）
 
 ## Configuration
-- 继承 baseline 超参
+- 继承 baseline 超参（seed=0，5 类）
 - 新增：NWD loss（β=2.0）、改进检测头（小目标分支 + CBAM 注意力）
 - 详见 `config.yaml`
 
 ## Dataset
-同 Baseline。
+同 Baseline（`D:/data_tianwen/MeteorCam/meteor_yolo_split`，5 类）。
 
 ## Random seed
-42
+0
 
 ## Command
-见 `command.txt`。
+见 `command.txt`：
+```
+python src/train.py --config experiments/exp02_nwd_head/config.yaml
+```
 
 ## Result
 （待跑，回填 `metrics.csv`）
@@ -30,7 +34,7 @@ Baseline（EXP-000）、exp01 数据增强（EXP-001）
 
 ## Problems
 - [ ] NWD 两版文献出处核实（见 `docs/02-literature/verified_references.md`）
-- [ ] 改进检测头是否引入额外虚警，需结合后处理评估
+- [ ] 改进检测头是否引入额外虚警（seagull/airplane/satellite/star），需结合后处理评估
 
 ## Implementation Note（实现状态）
 - `config.yaml` 中 `model_side`（NWD loss / 改进检测头 / CBAM）当前为**配置声明**，`src/train.py` 仍使用 Ultralytics 默认检测头与 CIoU loss。

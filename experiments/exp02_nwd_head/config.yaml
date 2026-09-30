@@ -1,5 +1,10 @@
 # exp02 模型侧改进配置
-# 目标：针对“极小标注尺度 / anchor 不匹配”根因，引入 NWD 度量 + 改进检测头
+# 目标：针对“star 极小标注尺度 / 分配策略不匹配”与“多类虚警”根因，引入 NWD 度量 + 改进检测头
+#
+# 与 Baseline 的差异：
+#   - NWD loss 替换/加权 IoU，对弱小目标（star）更敏感；
+#   - 改进检测头（小目标分支 + 轻量注意力 CBAM），提升 star 召回；
+#   - 后续可接入时序/形态学后处理，进一步抑制 seagull/airplane/satellite/star 虚警。
 
 experiment_id: EXP-002
 name: exp02_nwd_head
@@ -16,7 +21,7 @@ training:
   epochs: 100
   imgsz: 640
   batch: 16
-  seed: 42
+  seed: 0
   device: 0
 
 warning: >

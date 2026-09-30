@@ -51,6 +51,7 @@ data/*.tar.gz
 # 完整权重 / 大量 checkpoint 不入库（用 GitHub Release 分发）
 results/checkpoints/*
 !results/checkpoints/.gitkeep
+!results/checkpoints/README.md
 # 框架训练日志（*.log 大体积）不入库；md/csv 实验日志可入库
 *.log
 # 图表(png/svg) 与 CSV 结果表 默认入库（results/figures, results/tables）

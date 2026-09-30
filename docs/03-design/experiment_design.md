@@ -8,7 +8,7 @@
 
 - **mAP@0.5**：主指标（IoU 阈值 0.5 的平均精度）。
 - **mAP@0.5:0.95**：综合定位精度。
-- **Precision / Recall**：分总体与分 `meteor` / `star` 两类记录（重点盯 `star_recall`）。
+- **Precision / Recall**：分总体与分 5 类记录（重点盯 `star_recall`，同时关注 seagull / airplane / satellite 虚警率）。
 - **虚警率 FAR（False Alarm Rate）**：背景 / 非目标被误检为 meteor/star 的比例，衡量虚警抑制。
 - **推理速度（FPS）**：若涉及实时监测场景。
 

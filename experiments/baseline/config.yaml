@@ -1,4 +1,4 @@
-# Baseline 实验配置（YOLOv8n 默认超参，验证整条流程）
+# Baseline 实验配置（与 D:\data_tianwen\MeteorDetection\runs\detect\baseline_yolov8n 的真实参数一致）
 # 对应 experiments/baseline/
 
 experiment_id: EXP-000
@@ -9,8 +9,9 @@ model:
   pretrained: yolov8n.pt
 
 data:
-  yaml: configs/data.yaml   # UAEMMN：meteor + star 两类
+  yaml: configs/data.yaml   # 5 类：meteor / seagull / airplane / satellite / star
   # 数据划分在 data.yaml 的 train/val 路径中定义
+  # 本地真实数据：D:/data_tianwen/MeteorCam/meteor_yolo_split -> 链接到 data/raw
 
 training:
   epochs: 100
@@ -18,14 +19,22 @@ training:
   batch: 16
   optimizer: auto          # SGD/Adam 自动
   lr0: 0.01
+  lrf: 0.01
   momentum: 0.937
   weight_decay: 0.0005
   warmup_epochs: 3.0
+  warmup_momentum: 0.8
   close_mosaic: 10         # 末 10 epoch 关 mosaic
-  seed: 42
+  seed: 0                  # 真实 Baseline 使用的随机种子
   deterministic: true
+  patience: 50
+  workers: 4
+  val: true
+  single_cls: false
+  iou: 0.7
+  max_det: 300
   device: 0                # GPU；CPU 改 -1
 
 note: >
-  基线均不引入任何改进。重点观察 star 类 Recall 是否≈0，
-  并在 notes.md 中记录根因分析（标注尺度 / 类别不平衡 / anchor 匹配）。
+  基线均不引入任何改进。重点观察 star 类 Recall（实测 0.0558，极低）与
+  seagull/airplane/satellite/star 等虚警来源的识别表现。

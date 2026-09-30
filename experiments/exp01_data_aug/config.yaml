@@ -1,5 +1,10 @@
 # exp01 数据侧改进配置
-# 目标：缓解 star 类 Recall=0（候选根因：极小标注 / 类别不平衡）
+# 目标：缓解 star 类 Recall 极低（Baseline 0.0558）与 seagull/airplane/satellite/star 虚警
+#
+# 与 Baseline 的差异：
+#   - 对 star 类做过采样 / 切片增强，提升弱小目标召回；
+#   - 降低 mosaic 比例，避免 star 被稀释；
+#   - 对 seagull/airplane/satellite 加负样本/难例挖掘，抑制虚警。
 
 experiment_id: EXP-001
 name: exp01_data_aug
@@ -11,14 +16,15 @@ data_side:
   slice_aug: true          # 小目标切片增强（SliceAided / 9-grid）
   mosaic: 0.5              # 降低 mosaic 比例，避免极小目标被稀释
   copy_paste: false        # 可选：将 star 粘贴到背景图
+  hard_negative_mining: true  # 对 seagull/airplane/satellite 增加难例负样本
 
 training:
   epochs: 100
   imgsz: 640
   batch: 16
-  seed: 42
+  seed: 0
   device: 0
 
 expected_effect: >
-  提升 star 类 Recall；若仍≈0，则排除“样本不足/不平衡”假设，
-  转向“标注尺度 / anchor 匹配”根因（见 exp02）。
+  提升 star 类 Recall；降低 seagull/airplane/satellite/star 虚警；
+  若 star R 仍极低 → 排除“样本不足/不平衡”假设，转向“标注尺度 / 分配策略”根因（见 exp02）。

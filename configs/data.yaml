@@ -1,13 +1,16 @@
-# YOLOv8 数据集配置 (UAEMMN)
-
-# 说明：
-#   UAEMMN 体积约 437 MB、14800 张图像，不入库（见 .gitignore 的 data/raw/）。
-#   先用 scripts/download_uaemmn.py 下载解压到 data/raw/，再按如下组织。
+# YOLOv8 数据集配置 (MeteorCam 真实数据)
 #
-# 类别（以数据集自带 classes.txt 为准！当前按方案已知的 meteor/star 占位）：
-#   0: meteor   流星（线状短时弱小目标）
-#   1: star     恒星（静止背景，当前 Baseline Recall=0，需诊断）
-#   ⚠️ 下载后请核对实际类别数，再改下面的 nc / names。
+# 本地真实数据路径：D:/data_tianwen/MeteorCam/meteor_yolo_split
+# 由于数据集体积大（约 437 MB+），不入库；本地使用时请将真实数据链接或复制到本仓库 data/raw/
+#
+# 类别（来自 meteor_yolo_split/classes.txt，共 5 类）：
+#   0: meteor     流星（真实目标，线状短时弱小目标）
+#   1: seagull    海鸥（常见虚警：飞鸟反光/运动轨迹）
+#   2: airplane   飞机（常见虚警：航线灯轨迹）
+#   3: satellite  卫星（常见虚警：缓慢移动光点）
+#   4: star       恒星（弱小目标 / 静止背景虚警来源）
+#
+# Baseline 关键发现：star 类 Recall=0.0558，极低；meteor Recall=0.9365。
 
 path: data/raw
 
@@ -15,8 +18,11 @@ train: images/train
 val: images/val
 test: images/test
 
-nc: 2
+nc: 5
 
 names:
   0: meteor
-  1: star
+  1: seagull
+  2: airplane
+  3: satellite
+  4: star
