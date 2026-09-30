@@ -60,5 +60,5 @@ python src/train.py --name baseline --epochs 100 --imgsz 640 --batch 16 --seed 4
 
 ## 训练落盘
 
-`src/train.py` 默认 `project="runs"`，`name` 即实验子目录名（如 `baseline`）。
+`src/train.py` 默认 `project="experiments"`，`name` 即实验子目录名（如 `baseline`）。
 权重与日志落到 `runs/<name>/`，**不入库**；只把 `metrics.csv` 与 `notes.md` 留在 `experiments/<name>/`。

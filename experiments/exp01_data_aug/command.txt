@@ -1,1 +1,1 @@
-python src/train.py --name exp01_data_aug --model yolov8n.pt --data configs/data.yaml --epochs 100 --imgsz 640 --batch 16 --seed 42 --aug star_over+slice --device 0
+python src/train.py --config experiments/exp01_data_aug/config.yaml
